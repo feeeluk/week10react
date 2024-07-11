@@ -42,27 +42,23 @@ export default function App() {
     })
 }
 
-  return (
-    <>
-      {/* <NavBar /> */}
-      <h1>READ</h1>
-      {/* {console.log(food)} */}
-      {food.map( (item) => {
-        return(
-            <a href="" key={item.food_id}>
-              <p key={item.food_id}>
-                {item.food_first_name}, &nbsp; 
-                {item.food_last_name}, &nbsp;
-                {item.food_favorite}, &nbsp;
-                {item.food_comment}, &nbsp;
-              </p>
-            </a>
-        )
-      })}
+function handleUpdate(){
+
+}
+
+async function handleDelete(id){
+ 
+  const result = await fetch(`http://localhost:7070/delete/${id}`, {
+  method: "DELETE"})
+
+} 
+
+return (
+    <div>
 
       <h1>CREATE</h1>
 
-      <form onSubmit={handleSubmit}>
+      <form  className='create' onSubmit={handleSubmit}>
         <label id="" htmlFor="first_name">First name</label>
         <input id="first_name" name="first_name" placeholder="First name.." className='' onChange={handleChange}></input>
 
@@ -77,7 +73,37 @@ export default function App() {
 
         <button type="submit">create</button>
       </form>
+
       
-    </>
-  )
+      <h1>READ</h1>
+
+      {food.map( (item) => {
+        return(
+          <div key={"div"+item.food_id}>
+            <p key={"p"+item.food_id}>
+              <a key={"a"+item.food_id} href={item.food_id} >
+                {item.food_first_name}, &nbsp; 
+                {item.food_last_name}, &nbsp;
+                {item.food_favorite}, &nbsp;
+                {item.food_comment}, &nbsp;
+              </a>
+            </p>
+
+            <form key={"updateForm"+item.food_id} className='update' onSubmit={handleUpdate}>
+              <button type='submit'>update</button>
+            </form>
+
+
+            <form key={"deleteForm"+item.food_id} className='delete' onSubmit={() => {
+                handleDelete(item.food_id)
+            }}>
+              <button type='submit'>delete</button>
+            </form>
+
+          </div>      
+        )
+      })}
+
+    </div>
+)
 }
