@@ -79,9 +79,9 @@ return (
 
       {food.map( (item) => {
         return(
-          <div key={"div"+item.food_id}>
-            <p key={"p"+item.food_id}>
-              <a key={"a"+item.food_id} href={item.food_id} >
+          <div key={"div" + item.food_id}>
+            <p key={"p" + item.food_id}>
+              <a key={"a" + item.food_id} href={item.food_id} >
                 {item.food_first_name}, &nbsp; 
                 {item.food_last_name}, &nbsp;
                 {item.food_favorite}, &nbsp;
@@ -89,12 +89,12 @@ return (
               </a>
             </p>
 
-            <form key={"updateForm"+item.food_id} className='update' onSubmit={handleUpdate}>
+            <form key={"updateForm" + item.food_id} className='update' onSubmit={handleUpdate}>
               <button type='submit'>update</button>
             </form>
 
 
-            <form key={"deleteForm"+item.food_id} className='delete' onSubmit={() => {
+            <form key={"deleteForm" + item.food_id} className='delete' onSubmit={() => {
                 handleDelete(item.food_id)
             }}>
               <button type='submit'>delete</button>
